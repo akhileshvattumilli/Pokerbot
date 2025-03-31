@@ -1,44 +1,61 @@
-# Project Description
+# 23NPCs Pokerbot
 
-**23NPCs** is a poker-playing bot originally developed for the **Build4Good 2025 Pokerbot Challenge**, a hackathon-style competition hosted by Build4Good and inspired by the MIT Pokerbots framework.
+`23NPC` is a poker-playing bot originally developed for the **Build4Good 2025 Pokerbot Challenge**, a hackathon competition inspired by the MIT Pokerbots framework. The challenge involved building a bot that could compete in a modified version of Texas Hold'em called **B4G Hold'em**.
 
-This project implements a bot for **B4G Hold'em**, a custom variant of Texas Hold'em. The bot is designed to autonomously play thousands of hands, make strategic betting decisions, and maximize long-term profit under strict time constraints.
+This repository includes our bot's implementation, which uses Monte Carlo simulations to estimate hand strength and makes decisions based on calculated equity and pot odds.
 
-## B4G Hold'em Rules
+## Bot Strategy: Monte Carlo + Smart Betting
 
-- Each player is dealt **3 private cards**.
-- The flop consists of **2 community cards**, followed by a betting round.
-- Then, **2 more community cards** are revealed, followed by a final betting round.
-- Standard [Texas Hold'em hand rankings](https://www.cardplayer.com/rules-of-poker/hand-rankings) are used to determine the winner.
-- Betting occurs in **two rounds** instead of the usual three.
+The `23NPCs` bot estimates its chance of winning using a **Monte Carlo simulation** of random opponent hands and board outcomes. Based on the estimated **equity**, the bot makes betting decisions using logic inspired by real-world professional strategies.
+
+### Key Logic
+
+- **Preflop**:
+  - If estimated equity > 60%, raise aggressively (≈2.5× big blind).
+  - If marginal, call small bets or fold to larger ones.
+
+- **Postflop**:
+  - Raise if equity exceeds pot odds by at least **20%**.
+  - Raise sizing: ~67% of the current pot.
+  - Call if equity ≥ pot odds; otherwise, fold.
+
+The core equity calculation is handled by a custom `monte_carlo_equity` function, simulating hundreds of hands per decision for accurate win-rate estimates.
+
+## B4G Hold'em Rules Summary
+
+- Each player is dealt **3 private (hole) cards**.
+- The community board reveals:
+  - **2 cards (flop)**, followed by a betting round.
+  - **2 additional cards**, then a final betting round.
+- **Hand rankings** follow [Texas Hold'em standards](https://www.cardplayer.com/rules-of-poker/hand-rankings).
+- Only **two rounds of betting** per hand.
 
 ## Match Format
 
-- Each match consists of **5,000 hands** between two bots.
-- Both players start each hand with **500 chips**.
-- **Small blind:** 5 chips  
-  **Big blind:** 10 chips  
-  (blinds alternate each hand)
-- Chips reset to 500 after each hand, but **bankrolls are tracked cumulatively**.
-- The bot with the highest total bankroll after all rounds wins.
+- Matches are played over **5,000 hands** between two bots.
+- Each hand:
+  - Players start with **500 chips**.
+  - **Small blind:** 5 chips  
+    **Big blind:** 10 chips
+  - Blinds alternate each hand.
+  - Chips reset each hand; **cumulative bankroll** determines the winner.
 
-## Time Limit
+## Time Constraints
 
-- Each bot has a total of **180 seconds** per match.
-- Once the time runs out, the bot will automatically fold all future hands.
+- Each bot has a **180-second time budget** per match.
+- Once time runs out, the bot will **auto-fold** all remaining hands.
 
 ## Project Structure
 
-- `engine.py` – Main game engine (do not modify).
-- `config.py` – Match configuration parameters (can be modified).
-- `bots/` – Contains bot implementations.
-  - Each bot lives in its own subfolder.
-  - Includes a required `skeleton/` folder with essential base code (should not be edited).
-- `player_chatbot/` – CLI interface to play against your own bot (helpful for testing).
+- `engine.py` – Main engine for running matches (do not edit).
+- `config.py` – Match configuration (editable).
+- `bots/23NPCs/` – Contains the 23NPCs bot implementation.
+  - Based on a required `skeleton/` structure.
+- `player_chatbot/` – Command-line interface for testing bots interactively.
 
 ## Dependencies
 
 - Python ≥ 3.5
-- [eval7](https://pypi.org/project/eval7/) – Used for hand evaluation.
+- [eval7](https://pypi.org/project/eval7/) – For poker hand evaluation
   ```bash
   pip install eval7

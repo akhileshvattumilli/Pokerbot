@@ -35,10 +35,6 @@ If your pokerbot attempts to tamper with the game engine/judging system in any w
  - eval7 (pip install eval7)
  - openai (optional, pip install openai)
 
-## Submission
-
-More info to come later!
-
 ## Acknowledgements
 
 The Build4Good 2025 Pokerbot Challenge is sponsored by Susquehanna International Group and Hudson River Trading, in addition to all of the general Build4Good sponsors.

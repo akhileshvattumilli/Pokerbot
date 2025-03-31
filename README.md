@@ -18,17 +18,7 @@ At the end of Build4Good, you will submit the code for your pokerbot and all com
 
 ## Code Structure
 
-The engine.py file contains the main code to simulate matches between bots, you should not edit this file. If you want to change any parameters of the matches, you can edit config.py
-
-Each bot is implemented in a seperate folder, python_skeleton/ gives an example of how these folders need to be structured. Inside the folder for each bot, you should have the skeleton/ folder, which contains basic code required to run your bot. **DO NOT** edit any of the files in skeleton/, but you do need to copy the skeleton/ folder into the folder for any new bots you create.
-
-The only code you need to edit is the player.py class inside the bot folder. You will need to implement the methods __init__, handle_new_round, handle_round_over, and get_action. You can store variables that will be kept between rounds as members of your class. To run your bot, edit the path in config.py. You may create additional files if needed, but your final submission must be less than 10 MB in size.
-
-There is a special bot, player_chatbot, that is provided which allows you to play against your own bot using a command line interface. This can be used for debugging purposes. 
-
-You can use numpy/numba, but any other external Python libraries **are not allowed**!
-
-If your pokerbot attempts to tamper with the game engine/judging system in any way, your team will be **immidiately disqualified**.  
+The engine.py file contains the main code to simulate matches between bots, you should not edit this file. If you want to change any parameters of the matches, you can edit config.py. Our bot is implemented in a seperate folder named 23NPCs. Inside the folder we have the skeleton/ folder, which contains basic code required to run the bot. There is a special bot, player_chatbot, that is provided which allows you to play against your own bot using a command line interface. This can be used for debugging purposes. 
 
 ## Dependencies
  - python>=3.5

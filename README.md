@@ -1,6 +1,8 @@
-# Readme Pokerbot
+# Project Description
 
-This project implements a poker-playing bot for **B4G Hold'em**, a custom variant of Texas Hold'em designed for the Build4Good 2025 hackathon. The bot, named `23NPCs`, was developed to autonomously play poker matches and make strategic decisions under time constraints.
+**23NPCs** is a poker-playing bot originally developed for the **Build4Good 2025 Pokerbot Challenge**, a hackathon-style competition hosted by Build4Good and inspired by the MIT Pokerbots framework.
+
+This project implements a bot for **B4G Hold'em**, a custom variant of Texas Hold'em. The bot is designed to autonomously play thousands of hands, make strategic betting decisions, and maximize long-term profit under strict time constraints.
 
 ## B4G Hold'em Rules
 

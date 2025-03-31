@@ -1,6 +1,6 @@
 # Readme Pokerbot
 
-This project implements a poker-playing bot for **B4G Hold'em**, a custom variant of Texas Hold'em designed for the Build4Good 2025 hackathon. The bot, named `readme`, was developed to autonomously play poker matches and make strategic decisions under time constraints.
+This project implements a poker-playing bot for **B4G Hold'em**, a custom variant of Texas Hold'em designed for the Build4Good 2025 hackathon. The bot, named `23NPCs`, was developed to autonomously play poker matches and make strategic decisions under time constraints.
 
 ## B4G Hold'em Rules
 

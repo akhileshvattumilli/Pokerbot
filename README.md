@@ -1,32 +1,42 @@
-# Build4Good Pokerbots
+# Readme Pokerbot
 
-Welcome to the Build4Good 2025 Pokerbot Challenge. Today you are tasked with building a bot to play a variant of poker.
+This project implements a poker-playing bot for **B4G Hold'em**, a custom variant of Texas Hold'em designed for the Build4Good 2025 hackathon. The bot, named `readme`, was developed to autonomously play poker matches and make strategic decisions under time constraints.
 
-## Poker Variant Description
+## B4G Hold'em Rules
 
-Today we are playing B4G Hold'em, which is based on the popular [No-Limit Texas Hold'em](https://redchippoker.com/beginners-guide-to-no-limit-holdem/), however, the rounds of betting are different.
+- Each player is dealt **3 private cards**.
+- The flop consists of **2 community cards**, followed by a betting round.
+- Then, **2 more community cards** are revealed, followed by a final betting round.
+- Standard [Texas Hold'em hand rankings](https://www.cardplayer.com/rules-of-poker/hand-rankings) are used to determine the winner.
+- Betting occurs in **two rounds** instead of the usual three.
 
-Player will initially be given 3 cards (instead of 2 as in Hold'em). After the first round of betting, 2 cards will be dealt on the flop. After another round of betting, the final 2 cards will be dealt, followed by a final round of betting. The standard [Texas Hold'em hand rules](https://www.cardplayer.com/rules-of-poker/hand-rankings) will be used to decide the winner. Noteably, this is one less round of betting than in Texas Hold'em.
+## Match Format
 
-## Pokerbot Tournament
+- Each match consists of **5,000 hands** between two bots.
+- Both players start each hand with **500 chips**.
+- **Small blind:** 5 chips  
+  **Big blind:** 10 chips  
+  (blinds alternate each hand)
+- Chips reset to 500 after each hand, but **bankrolls are tracked cumulatively**.
+- The bot with the highest total bankroll after all rounds wins.
 
-A match of B4G Hold'em consists of 5,000 rounds played between two players. In every round, each player is allocated a stack of 500 chips before the cards are dealt. The big blind (BB) and small blind (SB) will be 10 and 5 chips, respectively, and will alternate each hand. They players chips reset back to 500 after each round. The change in a player's stack at the end of the round is used to update the player's bankroll, which starts at 0. The player with the highest cumulative bankroll after the last round is played wins the match.
+## Time Limit
 
-Your poker bot will have a **time limit of 180 seconds per match**. This time limit does not reset after each hand. Once your bot runs out of time, you will automatically fold all remaining hands. 
+- Each bot has a total of **180 seconds** per match.
+- Once the time runs out, the bot will automatically fold all future hands.
 
-At the end of Build4Good, you will submit the code for your pokerbot and all competetors' bot's will compete in a March-Madness style single-elimination bracket.
+## Project Structure
 
-## Code Structure
-
-The engine.py file contains the main code to simulate matches between bots, you should not edit this file. If you want to change any parameters of the matches, you can edit config.py. Our bot is implemented in a seperate folder named 23NPCs. Inside the folder we have the skeleton/ folder, which contains basic code required to run the bot. There is a special bot, player_chatbot, that is provided which allows you to play against your own bot using a command line interface. This can be used for debugging purposes. 
+- `engine.py` – Main game engine (do not modify).
+- `config.py` – Match configuration parameters (can be modified).
+- `bots/` – Contains bot implementations.
+  - Each bot lives in its own subfolder.
+  - Includes a required `skeleton/` folder with essential base code (should not be edited).
+- `player_chatbot/` – CLI interface to play against your own bot (helpful for testing).
 
 ## Dependencies
- - python>=3.5
- - eval7 (pip install eval7)
- - openai (optional, pip install openai)
 
-## Acknowledgements
-
-The Build4Good 2025 Pokerbot Challenge is sponsored by Susquehanna International Group and Hudson River Trading, in addition to all of the general Build4Good sponsors.
-
-The code for the Build4Good Pokerbot Challenge was forked from the [MIT Pokerbots codebase](https://github.com/mitpokerbots/engine-2025/tree/master).
+- Python ≥ 3.5
+- [eval7](https://pypi.org/project/eval7/) – Used for hand evaluation.
+  ```bash
+  pip install eval7
